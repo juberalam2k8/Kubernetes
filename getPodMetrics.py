@@ -3,11 +3,10 @@ from kubernetes import client, config
 class GetMetric:
     def __init__(self):
         config.load_kube_config()
-        self.api = client.CustomObjectsApi()  # Use CustomObjectsApi
+        self.api = client.CustomObjectsApi()
 
     def get_pod_metrics(self, namespace='default'):
         try:
-            # Access metrics via the Metrics API endpoint
             metrics = self.api.list_namespaced_custom_object(
                 group="metrics.k8s.io",
                 version="v1beta1",
